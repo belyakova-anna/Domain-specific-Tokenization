@@ -1,0 +1,11 @@
+{
+  "labeled_samples": 1000,
+  "unlabeled_samples": 61249,
+  "avg_question_words": 12.913,
+  "avg_context_words": 200.207,
+  "label_distribution": {
+    "yes": 552,
+    "no": 338,
+    "maybe": 110
+  }
+}

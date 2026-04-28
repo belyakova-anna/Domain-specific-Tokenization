@@ -1,0 +1,13 @@
+tokenizer_name,model_id,avg_tokens_per_sample,fertility,unk_rate,avg_token_length_chars,stage,accuracy,f1_macro
+gpt2,gpt2,313.3833333333333,1.492135794435539,0.0,5.010264180454068,stage2_baseline_tokenization,,
+bert_base,bert-base-uncased,323.88666666666666,1.5421461107495993,0.0,4.287130799072892,stage2_baseline_tokenization,,
+biobert,dmis-lab/biobert-base-cased-v1.1,339.49,1.6164394432364655,0.0,4.0520372062510255,stage2_baseline_tokenization,,
+biomedical_bpe_100k,,273.2633333333333,1.3011094005427968,0.0,5.122095692221119,stage4_tokenization_analysis,,
+biomedical_bpe_50k,,273.2633333333333,1.3011094005427968,0.0,5.122095692221119,stage4_tokenization_analysis,,
+biomedical_bpe_30k,,275.11,1.3099020743726888,0.0,5.080565796624609,stage4_tokenization_analysis,,
+gpt2,,313.3833333333333,1.492135794435539,0.0,5.010264180454068,stage4_tokenization_analysis,,
+bert_base,,323.88666666666666,1.5421461107495993,0.0,4.287130799072892,stage4_tokenization_analysis,,
+biobert,,339.49,1.6164394432364655,0.0,4.0520372062510255,stage4_tokenization_analysis,,
+biomedical_bpe_30k,,,,,,stage5_downstream_classification,0.5666666666666667,0.3710451896980394
+bert_base,,,,,,stage5_downstream_classification,0.56,0.3581593556963015
+biobert,,,,,,stage5_downstream_classification,0.5533333333333333,0.35206966282860797

@@ -1,0 +1,61 @@
+tokenizer_name,term,pieces,n_pieces
+bert_base,nephrolithiasis,"['ne', '##ph', '##rol', '##ith', '##ias', '##is']",6
+bert_base,gastroesophageal,"['gas', '##tro', '##es', '##op', '##ha', '##ge', '##al']",7
+bert_base,dermographism,"['der', '##mo', '##graph', '##ism']",4
+bert_base,electrocardiogram,"['electro', '##card', '##io', '##gram']",4
+bert_base,immunohistochemistry,"['im', '##mun', '##oh', '##isto', '##chemist', '##ry']",6
+bert_base,acetylcholinesterase,"['ace', '##ty', '##lch', '##olin', '##ester', '##ase']",6
+bert_base,hypercholesterolemia,"['hyper', '##cho', '##les', '##terol', '##emia']",5
+bert_base,hepatocellular,"['he', '##pa', '##to', '##cellular']",4
+bert_base,neurodegenerative,"['ne', '##uro', '##de', '##gen', '##erative']",5
+bert_base,myocardial,"['my', '##oca', '##rdial']",3
+biobert,nephrolithiasis,"['ne', '##ph', '##rol', '##ith', '##ias', '##is']",6
+biobert,gastroesophageal,"['gas', '##tro', '##es', '##op', '##hage', '##al']",6
+biobert,dermographism,"['der', '##mo', '##graph', '##ism']",4
+biobert,electrocardiogram,"['electro', '##card', '##io', '##gram']",4
+biobert,immunohistochemistry,"['im', '##mu', '##no', '##his', '##to', '##chemistry']",6
+biobert,acetylcholinesterase,"['ace', '##ty', '##l', '##cho', '##lines', '##tera', '##se']",7
+biobert,hypercholesterolemia,"['h', '##yper', '##cho', '##les', '##tero', '##lem', '##ia']",7
+biobert,hepatocellular,"['he', '##pa', '##to', '##cellular']",4
+biobert,neurodegenerative,"['ne', '##uro', '##de', '##gene', '##rative']",5
+biobert,myocardial,"['my', '##oc', '##ard', '##ial']",4
+gpt2,nephrolithiasis,"['n', 'eph', 'rol', 'ith', 'iasis']",5
+gpt2,gastroesophageal,"['g', 'ast', 'ro', 'es', 'oph', 'age', 'al']",7
+gpt2,dermographism,"['der', 'm', 'ograph', 'ism']",4
+gpt2,electrocardiogram,"['elect', 'ro', 'card', 'i', 'ogram']",5
+gpt2,immunohistochemistry,"['im', 'mun', 'oh', 'ist', 'ochemistry']",5
+gpt2,acetylcholinesterase,"['acet', 'yl', 'ch', 'ol', 'ines', 'ter', 'ase']",7
+gpt2,hypercholesterolemia,"['hyper', 'ch', 'olester', 'ole', 'mia']",5
+gpt2,hepatocellular,"['he', 'p', 'ato', 'cell', 'ular']",5
+gpt2,neurodegenerative,"['ne', 'uro', 'deg', 'ener', 'ative']",5
+gpt2,myocardial,"['my', 'ocard', 'ial']",3
+biomedical_bpe_30k,nephrolithiasis,['nephrolithiasis'],1
+biomedical_bpe_30k,gastroesophageal,['gastroesophageal'],1
+biomedical_bpe_30k,dermographism,"['dermo', 'graph', 'ism']",3
+biomedical_bpe_30k,electrocardiogram,['electrocardiogram'],1
+biomedical_bpe_30k,immunohistochemistry,['immunohistochemistry'],1
+biomedical_bpe_30k,acetylcholinesterase,"['acetyl', 'cholinesterase']",2
+biomedical_bpe_30k,hypercholesterolemia,['hypercholesterolemia'],1
+biomedical_bpe_30k,hepatocellular,['hepatocellular'],1
+biomedical_bpe_30k,neurodegenerative,['neurodegenerative'],1
+biomedical_bpe_30k,myocardial,['myocardial'],1
+biomedical_bpe_50k,nephrolithiasis,['nephrolithiasis'],1
+biomedical_bpe_50k,gastroesophageal,['gastroesophageal'],1
+biomedical_bpe_50k,dermographism,"['dermo', 'graph', 'ism']",3
+biomedical_bpe_50k,electrocardiogram,['electrocardiogram'],1
+biomedical_bpe_50k,immunohistochemistry,['immunohistochemistry'],1
+biomedical_bpe_50k,acetylcholinesterase,['acetylcholinesterase'],1
+biomedical_bpe_50k,hypercholesterolemia,['hypercholesterolemia'],1
+biomedical_bpe_50k,hepatocellular,['hepatocellular'],1
+biomedical_bpe_50k,neurodegenerative,['neurodegenerative'],1
+biomedical_bpe_50k,myocardial,['myocardial'],1
+biomedical_bpe_100k,nephrolithiasis,['nephrolithiasis'],1
+biomedical_bpe_100k,gastroesophageal,['gastroesophageal'],1
+biomedical_bpe_100k,dermographism,"['dermo', 'graph', 'ism']",3
+biomedical_bpe_100k,electrocardiogram,['electrocardiogram'],1
+biomedical_bpe_100k,immunohistochemistry,['immunohistochemistry'],1
+biomedical_bpe_100k,acetylcholinesterase,['acetylcholinesterase'],1
+biomedical_bpe_100k,hypercholesterolemia,['hypercholesterolemia'],1
+biomedical_bpe_100k,hepatocellular,['hepatocellular'],1
+biomedical_bpe_100k,neurodegenerative,['neurodegenerative'],1
+biomedical_bpe_100k,myocardial,['myocardial'],1
