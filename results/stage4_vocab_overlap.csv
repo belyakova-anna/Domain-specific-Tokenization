@@ -1,4 +1,0 @@
-custom_tokenizer,custom_vocab_size,biobert_vocab_size,overlap_tokens,overlap_ratio_vs_custom
-biomedical_bpe_30k,30000,28996,8165,0.27216666666666667
-biomedical_bpe_50k,39681,28996,9140,0.23033693707315844
-biomedical_bpe_100k,39681,28996,9140,0.23033693707315844

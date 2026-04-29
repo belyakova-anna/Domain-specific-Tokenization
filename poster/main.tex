@@ -1,0 +1,153 @@
+\documentclass[final]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[size=a0,scale=1.1]{beamerposter}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+% ---------- Colors ----------
+\definecolor{PosterBlue}{RGB}{24,63,123}
+\definecolor{PosterLightBlue}{RGB}{234,241,252}
+\definecolor{PosterAccent}{RGB}{0,132,180}
+\definecolor{PosterText}{RGB}{30,30,30}
+
+% ---------- Beamer style ----------
+\setbeamercolor{normal text}{fg=PosterText,bg=white}
+\setbeamercolor{headline}{fg=white,bg=PosterBlue}
+\setbeamercolor{block title}{fg=white,bg=PosterBlue}
+\setbeamercolor{block body}{fg=PosterText,bg=PosterLightBlue}
+\setbeamercolor{block alerted title}{fg=white,bg=PosterAccent}
+\setbeamercolor{block alerted body}{fg=PosterText,bg=white}
+
+\setbeamerfont{headline title}{size=\VeryHuge,series=\bfseries}
+\setbeamerfont{headline author}{size=\Large}
+\setbeamerfont{headline institute}{size=\large}
+\setbeamerfont{block title}{size=\Large,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+
+\setlength{\belowcaptionskip}{1.0ex}
+\setlength{\abovecaptionskip}{1.0ex}
+
+% ---------- Metadata ----------
+\title{Research Title}
+\author{Name Surname \and Coauthor}
+\institute{University / Lab Name}
+\date{\today}
+
+\begin{document}
+\begin{frame}[t]
+
+\begin{columns}[t,totalwidth=\textwidth]
+
+% ========== Column 1 ==========
+\begin{column}{0.32\textwidth}
+
+\begin{block}{Introduction}
+\justifying
+Briefly describe your motivation, problem statement, and goal.
+\begin{itemize}
+    \item Why this task matters
+    \item Which gap the work addresses
+    \item Main contribution
+\end{itemize}
+\end{block}
+
+\begin{block}{Data}
+\justifying
+\begin{itemize}
+    \item Data source
+    \item Sample size
+    \item Preprocessing
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{Hypothesis}
+\justifying
+Short statement of the research hypothesis.
+\end{alertblock}
+
+\end{column}
+
+% ========== Column 2 ==========
+\begin{column}{0.32\textwidth}
+
+\begin{block}{Method}
+\justifying
+Describe the pipeline or architecture.
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.4cm,
+    box/.style={draw,rounded corners,minimum width=6cm,minimum height=1.0cm,align=center},
+    >=Latex
+]
+\node[box] (a) {Input};
+\node[box,below=of a] (b) {Processing};
+\node[box,below=of b] (c) {Model};
+\node[box,below=of c] (d) {Output};
+\draw[->,thick] (a) -- (b);
+\draw[->,thick] (b) -- (c);
+\draw[->,thick] (c) -- (d);
+\end{tikzpicture}
+\end{center}
+\end{block}
+
+\begin{block}{Experiments}
+\justifying
+\begin{itemize}
+    \item Experimental setup
+    \item Baseline and comparisons
+    \item Metrics
+\end{itemize}
+\end{block}
+
+\begin{block}{Key Formula}
+\[
+\mathcal{L}(\theta)=\frac{1}{N}\sum_{i=1}^{N}\ell\left(y_i,\hat{y}_i\right)
+\]
+\end{block}
+
+\end{column}
+
+% ========== Column 3 ==========
+\begin{column}{0.32\textwidth}
+
+\begin{block}{Results}
+\justifying
+\begin{itemize}
+    \item Main quantitative outcomes
+    \item Qualitative examples
+    \item Interpretation
+\end{itemize}
+\vspace{0.5em}
+\begin{center}
+\fbox{\rule{0pt}{10cm}\rule{0.85\linewidth}{0pt}}
+\end{center}
+\end{block}
+
+\begin{block}{Conclusions}
+\justifying
+\begin{itemize}
+    \item What is confirmed
+    \item Limitations
+    \item Future work directions
+\end{itemize}
+\end{block}
+
+\begin{block}{Contacts}
+\justifying
+Email: name.surname@university.edu\\
+GitHub: github.com/username\\
+Project page / QR: \texttt{https://example.org}
+\end{block}
+
+\end{column}
+
+\end{columns}
+\end{frame}
+\end{document}
