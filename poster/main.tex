@@ -21,8 +21,8 @@
 \definecolor{PosterPrimary}{RGB}{24,40,60}
 \definecolor{PosterSecondary}{RGB}{40,84,104}
 \definecolor{PosterAccent}{RGB}{78,164,184}
-\definecolor{PosterSurface}{RGB}{249,251,253}
-\definecolor{PosterMuted}{RGB}{234,242,246}
+\definecolor{PosterSurface}{RGB}{236,242,248}
+\definecolor{PosterMuted}{RGB}{220,233,240}
 \definecolor{PosterText}{RGB}{32,36,45}
 \definecolor{PosterGreen}{RGB}{88,196,65}
 
@@ -56,12 +56,12 @@
 \setlength{\columnsep}{2.2cm}
 \setbeamersize{text margin left=1.4cm,text margin right=1.4cm}
 \setstretch{1.14}
-\addtobeamertemplate{block begin}{}{\vspace{0.5em}}
-\addtobeamertemplate{block end}{\vspace{0.35em}}{}
+\addtobeamertemplate{block begin}{}{\vspace{0.9em}}
+\addtobeamertemplate{block end}{\vspace{0.75em}}{}
 
 \setbeamertemplate{headline}{
   \leavevmode
-  \begin{beamercolorbox}[wd=\paperwidth,ht=9.4cm,dp=1.4cm,leftskip=1.8cm,rightskip=1.8cm]{headline}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=7.4cm,dp=1.4cm,leftskip=1.8cm,rightskip=1.8cm]{headline}
     \centering
     {\usebeamerfont{headline title}\inserttitle\par}
     \vspace{0.35em}
@@ -98,11 +98,11 @@
 \begin{flushleft}
 \setlength{\tabcolsep}{0.4em}
 \renewcommand{\arraystretch}{1.0}
-\begin{tabular}{@{}p{3.2cm}p{8.8cm}@{}}
-\fcolorbox{PosterSecondary}{white}{\qrcode[height=2.9cm]{https://github.com/belyakova-anna/Domain-specific-Tokenization}}
+\begin{tabular}{@{}p{5.2cm}p{8.8cm}@{}}
+\fcolorbox{PosterSecondary}{white}{\qrcode[height=4.9cm]{https://github.com/belyakova-anna/Domain-specific-Tokenization}}
 &
-\begin{minipage}[t]{8.6cm}
-\vspace*{-2em}
+\begin{minipage}[t]{10.6cm}
+\vspace*{-3em}
 \setlength{\parskip}{0pt}
 \setstretch{1.0}
 {\normalsize\textbf{Repository:}}\\[0.1em]
@@ -119,12 +119,25 @@
 \begin{itemize}
     \item Biomedical text contains long compounds, abbreviations, and rare terms that are hard for generic tokenizers.
     \item Over-fragmentation increases sequence length, weakens entity boundaries, and may harm minority classes.
-    \item Goal: train compact domain BPE tokenizers and test whether improved segmentation translates to downstream gains.
+    \item Research question: does domain-specific tokenization improve both efficiency (fewer subtokens) and task robustness (classification + NER alignment)?
+\end{itemize}
+\vspace{0.15em}
+\textbf{Main contributions}
+\begin{itemize}
+    \item We train two biomedical BPE tokenizers from PubMedQA text (\texttt{30k}, \texttt{50k requested / 39,681 actual}) with a reproducible setup.
+    \item We evaluate intrinsic, downstream, and entity-aware tokenization behavior in one unified protocol.
+    \item We show consistent gains over strong baselines (BERT-base, BioBERT, GPT-2) under a fixed classifier pipeline.
 \end{itemize}
 \end{block}
 
+\begin{alertblock}{Hypothesis}
+\justifying
+Domain-trained BPE will reduce fragmentation in biomedical text and improve task-level robustness, especially for entity-heavy inputs.
+\end{alertblock}
+
 \begin{block}{Dataset Signals (PubMedQA)}
 \justifying
+\small
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \node[
@@ -151,6 +164,9 @@
 \end{center}
 \vspace{0.2em}
 \begin{itemize}
+    \item \textbf{Source and task:} PubMedQA consists of biomedical question--context pairs with 3-way labels (\textit{yes/no/maybe}) in the labeled split.
+    \item \textbf{Data usage in this study:} unlabeled + labeled text for tokenizer training; labeled split for downstream classification.
+    \item \textbf{Length asymmetry:} contexts are \(\sim\)15.5x longer than questions on average, so they dominate tokenization cost.
     \item Contexts dominate tokenization cost and drive model efficiency.
     \item Minority class (\textit{maybe}) motivates macro-F1 over accuracy-only evaluation.
 \end{itemize}
@@ -159,7 +175,7 @@
 \begin{block}{Experimental Setup}
 \justifying
 \begin{flushleft}
-\scriptsize\bfseries Baselines
+\normalsize\bfseries Baselines
 \end{flushleft}
 \begin{flushleft}
 \begin{tabular}{@{}lll@{}}
@@ -170,7 +186,7 @@
 \end{flushleft}
 \vspace{0.35em}
 \begin{flushleft}
-\scriptsize\bfseries Custom
+\normalsize\bfseries Custom
 \end{flushleft}
 \begin{flushleft}
 \begin{tabular}{@{}ll@{}}
@@ -182,11 +198,6 @@
 \small
 \textbf{Protocol:} 300 samples for intrinsic analysis; PubMedQA 70/15/15 for classification; JNLPBA 4k/1k for NER metrics.
 \end{block}
-
-\begin{alertblock}{Hypothesis}
-\justifying
-Domain-trained BPE will reduce fragmentation in biomedical text and improve task-level robustness, especially for entity-heavy inputs.
-\end{alertblock}
 
 \end{column}
 
@@ -201,11 +212,11 @@ Domain-trained BPE will reduce fragmentation in biomedical text and improve task
     box/.style={draw=PosterSecondary,fill=white,rounded corners=8pt,line width=1.4pt,minimum width=8.8cm,minimum height=1.15cm,align=center,font=\bfseries},
     >=Latex
 ]
-\node[box] (a) {1) Collect PubMedQA corpora};
-\node[box,below=of a] (b) {2) Train biomedical BPE vocabularies (30k/50k)};
-\node[box,below=of b] (c) {3) Evaluate intrinsic metrics (fertility, compactness, UNK)};
-\node[box,below=of c] (d) {4) Validate on classification and NER-oriented metrics};
-\node[box,below=of d] (e) {5) Rank tokenizers by efficiency + quality trade-off};
+\node[box] (a) {1) Explore PubMedQA signals (length, rarity, class balance)};
+\node[box,below=of a] (b) {2) Train biomedical BPE tokenizers (min\_freq=10, 30k/50k)};
+\node[box,below=of b] (c) {3) Intrinsic metrics: fertility, avg tokens, token length, UNK};
+\node[box,below=of c] (d) {4) Downstream test: PubMedQA classification (fixed model)};
+\node[box,below=of d] (e) {5) NER-oriented diagnostics on JNLPBA entities};
 \draw[->,line width=1.8pt,PosterAccent] (a) -- (b);
 \draw[->,line width=1.8pt,PosterAccent] (b) -- (c);
 \draw[->,line width=1.8pt,PosterAccent] (c) -- (d);
@@ -214,37 +225,60 @@ Domain-trained BPE will reduce fragmentation in biomedical text and improve task
 \end{center}
 \vspace{0.2em}
 \justifying
-\textbf{Qualitative term behavior:} baseline tokenizers split terms like \textit{gastroesophageal} into 5+ pieces, while custom BPE often keeps the whole term in one token.
+\textbf{Key design choice:} only tokenization changes across configurations; model capacity and train/val/test split stay fixed for fair comparison.
 \end{block}
 
-\begin{block}{Tokenizer Adaptation Methods}
+\begin{block}{Tokenizer Design in This Project}
 \justifying
-\begin{beamercolorbox}[wd=\linewidth,rounded=true,sep=0.65em]{block body}
-\footnotesize\textbf{FVT (Fast Vocabulary Transfer)}
-\[
-\footnotesize
-E_{\text{new}}(t_i)=\frac{1}{\lvert T_d(t_i)\rvert}\sum_{t_j\in T_d(t_i)}E_{\text{old}}(t_j)
-\]
-\small Initializes each new token embedding as the average of embeddings of its source subpieces from the old vocabulary.
-\end{beamercolorbox}
-\vspace{0.25em}
-\begin{beamercolorbox}[wd=\linewidth,rounded=true,sep=0.65em]{block body}
-\footnotesize\textbf{FOCUS}
-\[
-\footnotesize
-E_{\text{new}}(t_i)=\frac{1}{\lvert V_t\rvert}\sum_{t_j\in V_t}w_t\,E_{\text{old}}(t_j)
-\]
-\small Uses weighted averaging with similarity-aware coefficients to better preserve semantic neighborhoods.
-\end{beamercolorbox}
-\vspace{0.25em}
-\begin{beamercolorbox}[wd=\linewidth,rounded=true,sep=0.65em]{block body}
-\footnotesize\textbf{ZeTT (Zero-shot Tokenizer Transfer)}
-\[
-\footnotesize
-\mathcal{L}_{\phi}=\mathcal{L}_{\text{LM}}+\alpha\cdot\mathcal{L}_{\text{aux}}
-\]
-\small Learns tokenizer-adaptation parameters by combining language modeling loss with tokenizer-specific auxiliary constraints.
-\end{beamercolorbox}
+\small
+\begin{center}
+\begin{tabularx}{0.97\linewidth}{p{4.6cm}X}
+\toprule
+\textbf{Design choice} & \textbf{Project setting} \\
+\midrule
+\textbf{Algorithm} & BPE from scratch (\texttt{tokenizers} library). \\
+\textbf{Normalization} & NFKC + lowercase for robust lexical matching. \\
+\textbf{Pre-tokenization} & Whitespace pre-tokenizer. \\
+\textbf{Special tokens} & \texttt{[PAD], [UNK], [CLS], [SEP], [MASK]}. \\
+\textbf{Training text} & PubMedQA context + question (labeled + unlabeled splits). \\
+\textbf{Vocabulary configs} & \texttt{30k} and \texttt{50k}; \texttt{min\_frequency=10}. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{block}
+
+\begin{block}{Tokenizer Overview and Project Examples}
+\justifying
+\small
+\textbf{Tokenizer families in NLP}
+\begin{center}
+\begin{tabularx}{0.98\linewidth}{lX}
+\toprule
+\textbf{Family} & \textbf{Typical behavior} \\
+\midrule
+WordPiece (BERT-style) & Greedy subword split with continuation markers; often higher fragmentation on rare biomedical terms. \\
+BPE (our approach) & Merge frequent character/subword pairs; can retain domain morphemes when trained on in-domain corpora. \\
+Byte-level BPE (GPT-2) & Strong open-vocabulary coverage, but biomedical lexical units may still split into many pieces. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\vspace{2em}
+\textbf{Examples from this project}
+\begin{center}
+\small
+\begin{tabularx}{0.98\linewidth}{@{}p{7cm}p{9cm}X@{}}
+\toprule
+Term & BioBPE-50k & BERT-base \\
+\midrule
+\textit{nephrolithiasis} & [nephrolithiasis] (1) & [ne, \#\#ph, \#\#rol, \#\#ith, \#\#ias, \#\#is] (6) \\
+\textit{gastroesophageal} & [gastroesophageal] (1) & [gas, \#\#tro, \#\#es, \#\#op, \#\#ha, \#\#ge, \#\#al] (7) \\
+\textit{electrocardiogram} & [electrocardiogram] (1) & [electro, \#\#card, \#\#io, \#\#gram] (4) \\
+\textit{immunohistochemistry} & [immunohistochemistry] (1) & [im, \#\#mun, \#\#oh, \#\#isto, \#\#chemist, \#\#ry] (6) \\
+\textit{hypercholesterolemia} & [hypercholesterolemia] (1) & [hyper, \#\#cho, \#\#les, \#\#terol, \#\#emia] (5) \\
+\textit{hepatocellular} & [hepatocellular] (1) & [he, \#\#pa, \#\#to, \#\#cellular] (4) \\
+\bottomrule
+\end{tabularx}
+\end{center}
 \end{block}
 
 \begin{block}{Evaluation Signals}
@@ -255,7 +289,7 @@ E_{\text{new}}(t_i)=\frac{1}{\lvert V_t\rvert}\sum_{t_j\in V_t}w_t\,E_{\text{old
     \item \textbf{NER compatibility:} subtoken-per-entity ratio, single-piece entity rate, fragmentation rate.
 \end{itemize}
 \vspace{0.2em}
-\textbf{Composite NER tokenization score}
+\textbf{Composite NER tokenization score (heuristic)}
 \[
 \text{Score}=0.50(1-\text{Frag})+0.30(\text{SinglePiece})+0.20(1-\text{UNK})
 \]
@@ -271,7 +305,7 @@ E_{\text{new}}(t_i)=\frac{1}{\lvert V_t\rvert}\sum_{t_j\in V_t}w_t\,E_{\text{old
 \textbf{Stage 4: Intrinsic tokenization metrics (best to worst by fertility)}
 \vspace{0.25em}
 \begin{center}
-\scriptsize
+\small
 \begin{tabularx}{0.96\linewidth}{lCCC}
 \toprule
 Tokenizer & Avg Tok/Sample & Fertility & Avg Tok Len \\
@@ -286,11 +320,11 @@ BioBERT & 339.49 & 1.616 & 4.05 \\
 \end{center}
 \vspace{0.15em}
 \textbf{Relative gain:} best custom model reduces fertility by \(\sim\)12.8\% vs best baseline (GPT-2).
-\vspace{0.55em}
+\vspace{1.5em}
 
 \textbf{Stage 5: Downstream classification (test set)}
 \begin{center}
-\scriptsize
+\small
 \begin{tabularx}{0.96\linewidth}{lCC}
 \toprule
 Tokenizer & Accuracy & Macro-F1 \\
@@ -305,28 +339,28 @@ BioBERT & 0.5533 & 0.3521 \\
 \end{center}
 \vspace{0.2em}
 \textbf{Observation:} custom BPE improves macro-F1 while keeping accuracy stable.
-\vspace{0.5em}
+\vspace{1.5em}
 
 \textbf{Stage 6: NER-oriented ranking}
 \begin{center}
 \begin{tikzpicture}
-\node[anchor=west] at (-1.0,2.45) {\small BioBPE-50k};
-\fill[PosterSecondary!80] (2.9,2.2) rectangle (8.0,2.6);
-\node[anchor=west] at (-1.0,1.65) {\small BioBPE-30k};
-\fill[PosterSecondary!65] (2.9,1.4) rectangle (7.55,1.8);
-\node[anchor=west] at (-1.0,0.85) {\small BERT-base};
+\node[anchor=west] at (-2.0,2.85) {\normalsize BioBPE-50k};
+\fill[PosterSecondary!80] (2.9,2.6) rectangle (8.0,3.0);
+\node[anchor=west] at (-2.0,1.85) {\normalsize BioBPE-30k};
+\fill[PosterSecondary!65] (2.9,1.6) rectangle (7.55,2.0);
+\node[anchor=west] at (-2.0,0.85) {\normalsize BERT-base};
 \fill[PosterAccent!75] (2.9,0.6) rectangle (6.45,1.0);
-\node[anchor=west] at (-1.0,0.05) {\small GPT-2};
-\fill[PosterAccent!60] (2.9,-0.2) rectangle (6.2,0.2);
-\node[anchor=west] at (-1.0,-0.75) {\small BioBERT};
-\fill[PosterAccent!45] (2.9,-1.0) rectangle (6.0,-0.6);
-\draw[PosterText!35,line width=0.8pt] (2.9,-1.25) -- (8.9,-1.25);
-\node[anchor=west,font=\scriptsize] at (2.9,-1.6) {NER tokenization score};
-\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (8.15,2.4) {0.3049};
-\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (7.70,1.6) {0.2920};
-\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (6.60,0.8) {0.2272};
-\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (6.35,0.0) {0.2167};
-\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (6.15,-0.8) {0.2087};
+\node[anchor=west] at (-2.0,-0.15) {\normalsize GPT-2};
+\fill[PosterAccent!60] (2.9,-0.4) rectangle (6.2,0.0);
+\node[anchor=west] at (-2.0,-1.15) {\normalsize BioBERT};
+\fill[PosterAccent!45] (2.9,-1.4) rectangle (6.0,-1.0);
+\draw[PosterText!35,line width=0.8pt] (2.9,-1.75) -- (8.9,-1.75);
+\node[anchor=west,font=\small] at (2.9,-2.1) {NER tokenization score};
+\node[anchor=west,font=\small,fill=white,inner sep=1.2pt] at (8.15,2.8) {0.3049};
+\node[anchor=west,font=\small,fill=white,inner sep=1.2pt] at (7.70,1.8) {0.2920};
+\node[anchor=west,font=\small,fill=white,inner sep=1.2pt] at (6.60,0.8) {0.2272};
+\node[anchor=west,font=\small,fill=white,inner sep=1.2pt] at (6.35,-0.2) {0.2167};
+\node[anchor=west,font=\small,fill=white,inner sep=1.2pt] at (6.15,-1.2) {0.2087};
 \end{tikzpicture}
 \end{center}
 \end{block}
@@ -335,28 +369,46 @@ BioBERT & 0.5533 & 0.3521 \\
 \begin{itemize}
   \item Best tokenizer overall: \textbf{BioBPE-50k}.
   \item Intrinsic compactness and extrinsic quality improve consistently.
-  \item Gains are strongest in entity-sensitive biomedical text.
+  \item Gains are strongest on entity-sensitive biomedical text (lower fragmentation, better single-piece entity rate).
 \end{itemize}
 \end{alertblock}
 
-\begin{block}{Conclusions}
+\begin{block}{Practical Deployment Guidance}
 \justifying
+\small
 \begin{itemize}
-    \item Domain-adapted BPE produces consistently more compact segmentation on biomedical text.
-    \item Custom tokenizers deliver the best macro-F1 and strongest NER-oriented scores.
-    \item \(50k\) vocabulary is the most stable option across intrinsic and extrinsic evaluations.
-    \item Practical recommendation: use custom biomedical BPE as a default tokenizer for PubMed-style pipelines.
+    \item \textbf{Default:} BioBPE-50k (fertility 1.301, top macro-F1 0.3718, top NER score 0.3049).
+    \item \textbf{If constrained:} BioBPE-30k with near-identical quality (macro-F1 gap 0.0008).
+    \item \textbf{Gain vs best baseline (GPT-2):} \(\sim\)12.8\% lower fertility and +0.0075 macro-F1.
+    \item \textbf{Highest impact:} long biomedical contexts and multi-morpheme entities.
 \end{itemize}
-\textbf{Limitations:} fixed lightweight classifier and single-domain corpus; future work includes transformer fine-tuning with embedding transfer (FVT/FOCUS/ZeTT).
+\vspace{0.15em}
+\textbf{Adoption path:} train in-domain BPE, validate on classification + NER diagnostics, then fine-tune full models.
 \end{block}
 
-\begin{block}{Reproducibility}
+\begin{block}{Conclusions}
 \justifying
-\begin{itemize}
-    \item Notebooks: 6 staged experiments from EDA to NER tokenization evaluation.
-    \item Deterministic setup: fixed seeds and consistent data protocol.
-    \item All metrics reported on the same benchmark splits for fair comparison.
-\end{itemize}
+\small
+\begin{tabularx}{\linewidth}{@{}p{7cm}X@{}}
+\toprule
+\textbf{Finding} & Domain-adapted BPE consistently yields more compact biomedical segmentation. \\
+\textbf{Task effect} & Custom tokenizers achieve top macro-F1 and best NER-oriented ranking. \\
+\textbf{Best config} & \(50k\) vocabulary is the most stable across intrinsic + extrinsic evaluation. \\
+\textbf{Recommendation} & Use custom biomedical BPE as default for PubMed-style pipelines. \\
+\bottomrule
+\end{tabularx}
+\end{block}
+
+\begin{block}{Reliability Notes and Next Steps}
+\justifying
+\small
+\begin{tabularx}{\linewidth}{@{}p{7cm}X@{}}
+\toprule
+\textbf{Reproducibility now} & 6 staged notebooks, fixed seeds, and shared benchmark splits across all tokenizers. \\
+\textbf{Main threats} & Single-seed variance, same-domain evaluation only (PubMedQA/JNLPBA), heuristic composite NER score. \\
+\textbf{Next experiments} & Multi-seed confidence intervals, transformer fine-tuning, and cross-domain transfer tests. \\
+\bottomrule
+\end{tabularx}
 \end{block}
 
 \end{column}
