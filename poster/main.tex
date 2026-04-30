@@ -5,39 +5,85 @@
 \usepackage[size=a0,scale=1.1]{beamerposter}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{qrcode}
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{setspace}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\microtypesetup{expansion=false}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
 
 % ---------- Colors ----------
-\definecolor{PosterBlue}{RGB}{24,63,123}
-\definecolor{PosterLightBlue}{RGB}{234,241,252}
-\definecolor{PosterAccent}{RGB}{0,132,180}
-\definecolor{PosterText}{RGB}{30,30,30}
+\definecolor{PosterPrimary}{RGB}{24,40,60}
+\definecolor{PosterSecondary}{RGB}{40,84,104}
+\definecolor{PosterAccent}{RGB}{78,164,184}
+\definecolor{PosterSurface}{RGB}{249,251,253}
+\definecolor{PosterMuted}{RGB}{234,242,246}
+\definecolor{PosterText}{RGB}{32,36,45}
+\definecolor{PosterGreen}{RGB}{88,196,65}
 
 % ---------- Beamer style ----------
 \setbeamercolor{normal text}{fg=PosterText,bg=white}
-\setbeamercolor{headline}{fg=white,bg=PosterBlue}
-\setbeamercolor{block title}{fg=white,bg=PosterBlue}
-\setbeamercolor{block body}{fg=PosterText,bg=PosterLightBlue}
+\setbeamercolor{headline}{fg=white,bg=PosterPrimary}
+\setbeamercolor{block title}{fg=white,bg=PosterSecondary}
+\setbeamercolor{block body}{fg=PosterText,bg=PosterSurface}
 \setbeamercolor{block alerted title}{fg=white,bg=PosterAccent}
-\setbeamercolor{block alerted body}{fg=PosterText,bg=white}
+\setbeamercolor{block alerted body}{fg=PosterText,bg=PosterMuted}
+\setbeamercolor{item}{fg=PosterSecondary}
+\setbeamercolor{itemize item}{fg=PosterSecondary}
+\setbeamercolor{itemize subitem}{fg=PosterSecondary}
 
 \setbeamerfont{headline title}{size=\VeryHuge,series=\bfseries}
-\setbeamerfont{headline author}{size=\Large}
-\setbeamerfont{headline institute}{size=\large}
-\setbeamerfont{block title}{size=\Large,series=\bfseries}
-\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{headline author}{size=\LARGE}
+\setbeamerfont{headline institute}{size=\Large}
+\setbeamerfont{block title}{size=\large,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize,series=\mdseries}
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+\setbeamertemplate{itemize item}{\raise0.15em\hbox{\scriptsize$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}{\raise0.2em\hbox{\tiny$\bullet$}}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setlength{\leftmargini}{1.5em}
+\setlength{\leftmarginii}{1.1em}
 
 \setlength{\belowcaptionskip}{1.0ex}
 \setlength{\abovecaptionskip}{1.0ex}
+\setlength{\parskip}{0.55em}
+\setlength{\columnsep}{2.2cm}
+\setbeamersize{text margin left=1.4cm,text margin right=1.4cm}
+\setstretch{1.14}
+\addtobeamertemplate{block begin}{}{\vspace{0.5em}}
+\addtobeamertemplate{block end}{\vspace{0.35em}}{}
+
+\setbeamertemplate{headline}{
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth,ht=9.4cm,dp=1.4cm,leftskip=1.8cm,rightskip=1.8cm]{headline}
+    \centering
+    {\usebeamerfont{headline title}\inserttitle\par}
+    \vspace{0.35em}
+    {\usebeamerfont{headline author}\insertauthor\par}
+    \vspace{0.2em}
+    {\usebeamerfont{headline institute}\insertinstitute}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.42cm,dp=0cm]{block alerted title}
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}{
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm,dp=0.4cm,leftskip=2.4cm,rightskip=2.4cm]{normal text}
+    \color{gray}\small \insertshorttitle\hfill\insertshortauthor
+  \end{beamercolorbox}
+}
 
 % ---------- Metadata ----------
-\title{Research Title}
-\author{Name Surname \and Coauthor}
-\institute{University / Lab Name}
+\title{Domain-Specific Tokenization for Biomedical NLP}
+\author{Anna Belyakova}
+\institute{Innopolis University}
 \date{\today}
 
 \begin{document}
@@ -48,28 +94,98 @@
 % ========== Column 1 ==========
 \begin{column}{0.32\textwidth}
 
-\begin{block}{Introduction}
+\begin{block}{Project Access}
+\begin{flushleft}
+\setlength{\tabcolsep}{0.4em}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{@{}p{3.2cm}p{8.8cm}@{}}
+\fcolorbox{PosterSecondary}{white}{\qrcode[height=2.9cm]{https://github.com/belyakova-anna/Domain-specific-Tokenization}}
+&
+\begin{minipage}[t]{8.6cm}
+\vspace*{-2em}
+\setlength{\parskip}{0pt}
+\setstretch{1.0}
+{\normalsize\textbf{Repository:}}\\[0.1em]
+{\small notebooks + tokenizers + poster code}\\[0.3em]
+{\normalsize\textbf{Study topic:}}\\[0.1em]
+{\small domain-specific tokenization}
+\end{minipage}
+\end{tabular}
+\end{flushleft}
+\end{block}
+
+\begin{block}{Motivation}
 \justifying
-Briefly describe your motivation, problem statement, and goal.
 \begin{itemize}
-    \item Why this task matters
-    \item Which gap the work addresses
-    \item Main contribution
+    \item Biomedical text contains long compounds, abbreviations, and rare terms that are hard for generic tokenizers.
+    \item Over-fragmentation increases sequence length, weakens entity boundaries, and may harm minority classes.
+    \item Goal: train compact domain BPE tokenizers and test whether improved segmentation translates to downstream gains.
 \end{itemize}
 \end{block}
 
-\begin{block}{Data}
+\begin{block}{Dataset Signals (PubMedQA)}
 \justifying
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[
+  draw=PosterSecondary,
+  rounded corners=8pt,
+  fill=white,
+  minimum width=14.8cm,
+  minimum height=7.5cm,
+  anchor=north west
+] (card) at (0,0) {};
+\node[
+  anchor=north west,
+  text width=11.4cm,
+  align=left,
+  font=\footnotesize
+] at (0.55,-0.55) {%
+{\bfseries\large Corpus Profile}\par\vspace{0.35em}
+\textbf{Labeled:} 1,000 \hspace{1.0em} \textbf{Unlabeled:} 61,249\par\vspace{0.28em}
+\textbf{Question length:} mean 12.9 words\par\vspace{0.28em}
+\textbf{Context length:} mean 200.2 words\par\vspace{0.28em}
+\mbox{\textbf{Class balance:} yes 55.2\%, no 33.8\%, maybe 11.0\%}
+};
+\end{tikzpicture}
+\end{center}
+\vspace{0.2em}
 \begin{itemize}
-    \item Data source
-    \item Sample size
-    \item Preprocessing
+    \item Contexts dominate tokenization cost and drive model efficiency.
+    \item Minority class (\textit{maybe}) motivates macro-F1 over accuracy-only evaluation.
 \end{itemize}
+\end{block}
+
+\begin{block}{Experimental Setup}
+\justifying
+\begin{flushleft}
+\scriptsize\bfseries Baselines
+\end{flushleft}
+\begin{flushleft}
+\begin{tabular}{@{}lll@{}}
+\tikz[baseline=(n.base)]\node[draw=PosterSecondary,rounded corners=7pt,fill=white,minimum width=3.25cm,minimum height=1.1cm,inner sep=2pt,font=\small\bfseries] (n) {BERT-base}; &
+\hspace{0.4cm}\tikz[baseline=(n.base)]\node[draw=PosterSecondary,rounded corners=7pt,fill=white,minimum width=3.25cm,minimum height=1.1cm,inner sep=2pt,font=\small\bfseries] (n) {BioBERT}; &
+\hspace{0.4cm}\tikz[baseline=(n.base)]\node[draw=PosterSecondary,rounded corners=7pt,fill=white,minimum width=3.25cm,minimum height=1.1cm,inner sep=2pt,font=\small\bfseries] (n) {GPT-2}; \\
+\end{tabular}
+\end{flushleft}
+\vspace{0.35em}
+\begin{flushleft}
+\scriptsize\bfseries Custom
+\end{flushleft}
+\begin{flushleft}
+\begin{tabular}{@{}ll@{}}
+\tikz[baseline=(n.base)]\node[draw=PosterAccent,rounded corners=7pt,fill=PosterMuted,minimum width=3.75cm,minimum height=1.1cm,inner sep=2pt,font=\small\bfseries] (n) {BioBPE-30k}; &
+\hspace{0.5cm}\tikz[baseline=(n.base)]\node[draw=PosterAccent,rounded corners=7pt,fill=PosterMuted,minimum width=3.75cm,minimum height=1.1cm,inner sep=2pt,font=\small\bfseries] (n) {BioBPE-50k}; \\
+\end{tabular}
+\end{flushleft}
+\vspace{0.2em}
+\small
+\textbf{Protocol:} 300 samples for intrinsic analysis; PubMedQA 70/15/15 for classification; JNLPBA 4k/1k for NER metrics.
 \end{block}
 
 \begin{alertblock}{Hypothesis}
 \justifying
-Short statement of the research hypothesis.
+Domain-trained BPE will reduce fragmentation in biomedical text and improve task-level robustness, especially for entity-heavy inputs.
 \end{alertblock}
 
 \end{column}
@@ -77,38 +193,71 @@ Short statement of the research hypothesis.
 % ========== Column 2 ==========
 \begin{column}{0.32\textwidth}
 
-\begin{block}{Method}
+\begin{block}{Tokenizer Adaptation Pipeline}
 \justifying
-Describe the pipeline or architecture.
 \begin{center}
 \begin{tikzpicture}[
-    node distance=1.4cm,
-    box/.style={draw,rounded corners,minimum width=6cm,minimum height=1.0cm,align=center},
+    node distance=1.15cm,
+    box/.style={draw=PosterSecondary,fill=white,rounded corners=8pt,line width=1.4pt,minimum width=8.8cm,minimum height=1.15cm,align=center,font=\bfseries},
     >=Latex
 ]
-\node[box] (a) {Input};
-\node[box,below=of a] (b) {Processing};
-\node[box,below=of b] (c) {Model};
-\node[box,below=of c] (d) {Output};
-\draw[->,thick] (a) -- (b);
-\draw[->,thick] (b) -- (c);
-\draw[->,thick] (c) -- (d);
+\node[box] (a) {1) Collect PubMedQA corpora};
+\node[box,below=of a] (b) {2) Train biomedical BPE vocabularies (30k/50k)};
+\node[box,below=of b] (c) {3) Evaluate intrinsic metrics (fertility, compactness, UNK)};
+\node[box,below=of c] (d) {4) Validate on classification and NER-oriented metrics};
+\node[box,below=of d] (e) {5) Rank tokenizers by efficiency + quality trade-off};
+\draw[->,line width=1.8pt,PosterAccent] (a) -- (b);
+\draw[->,line width=1.8pt,PosterAccent] (b) -- (c);
+\draw[->,line width=1.8pt,PosterAccent] (c) -- (d);
+\draw[->,line width=1.8pt,PosterAccent] (d) -- (e);
 \end{tikzpicture}
 \end{center}
+\vspace{0.2em}
+\justifying
+\textbf{Qualitative term behavior:} baseline tokenizers split terms like \textit{gastroesophageal} into 5+ pieces, while custom BPE often keeps the whole term in one token.
 \end{block}
 
-\begin{block}{Experiments}
+\begin{block}{Tokenizer Adaptation Methods}
+\justifying
+\begin{beamercolorbox}[wd=\linewidth,rounded=true,sep=0.65em]{block body}
+\footnotesize\textbf{FVT (Fast Vocabulary Transfer)}
+\[
+\footnotesize
+E_{\text{new}}(t_i)=\frac{1}{\lvert T_d(t_i)\rvert}\sum_{t_j\in T_d(t_i)}E_{\text{old}}(t_j)
+\]
+\small Initializes each new token embedding as the average of embeddings of its source subpieces from the old vocabulary.
+\end{beamercolorbox}
+\vspace{0.25em}
+\begin{beamercolorbox}[wd=\linewidth,rounded=true,sep=0.65em]{block body}
+\footnotesize\textbf{FOCUS}
+\[
+\footnotesize
+E_{\text{new}}(t_i)=\frac{1}{\lvert V_t\rvert}\sum_{t_j\in V_t}w_t\,E_{\text{old}}(t_j)
+\]
+\small Uses weighted averaging with similarity-aware coefficients to better preserve semantic neighborhoods.
+\end{beamercolorbox}
+\vspace{0.25em}
+\begin{beamercolorbox}[wd=\linewidth,rounded=true,sep=0.65em]{block body}
+\footnotesize\textbf{ZeTT (Zero-shot Tokenizer Transfer)}
+\[
+\footnotesize
+\mathcal{L}_{\phi}=\mathcal{L}_{\text{LM}}+\alpha\cdot\mathcal{L}_{\text{aux}}
+\]
+\small Learns tokenizer-adaptation parameters by combining language modeling loss with tokenizer-specific auxiliary constraints.
+\end{beamercolorbox}
+\end{block}
+
+\begin{block}{Evaluation Signals}
 \justifying
 \begin{itemize}
-    \item Experimental setup
-    \item Baseline and comparisons
-    \item Metrics
+    \item \textbf{Segmentation compactness:} avg tokens per sample, fertility, token length.
+    \item \textbf{Downstream utility:} test accuracy and macro-F1 on yes/no/maybe.
+    \item \textbf{NER compatibility:} subtoken-per-entity ratio, single-piece entity rate, fragmentation rate.
 \end{itemize}
-\end{block}
-
-\begin{block}{Key Formula}
+\vspace{0.2em}
+\textbf{Composite NER tokenization score}
 \[
-\mathcal{L}(\theta)=\frac{1}{N}\sum_{i=1}^{N}\ell\left(y_i,\hat{y}_i\right)
+\text{Score}=0.50(1-\text{Frag})+0.30(\text{SinglePiece})+0.20(1-\text{UNK})
 \]
 \end{block}
 
@@ -117,33 +266,97 @@ Describe the pipeline or architecture.
 % ========== Column 3 ==========
 \begin{column}{0.32\textwidth}
 
-\begin{block}{Results}
+\begin{block}{Experimental Results}
 \justifying
-\begin{itemize}
-    \item Main quantitative outcomes
-    \item Qualitative examples
-    \item Interpretation
-\end{itemize}
-\vspace{0.5em}
+\textbf{Stage 4: Intrinsic tokenization metrics (best to worst by fertility)}
+\vspace{0.25em}
 \begin{center}
-\fbox{\rule{0pt}{10cm}\rule{0.85\linewidth}{0pt}}
+\scriptsize
+\begin{tabularx}{0.96\linewidth}{lCCC}
+\toprule
+Tokenizer & Avg Tok/Sample & Fertility & Avg Tok Len \\
+\midrule
+BioBPE-50k & 273.26 & \textbf{1.301} & 5.12 \\
+BioBPE-30k & 275.11 & 1.310 & 5.08 \\
+GPT-2 & 313.38 & 1.492 & 5.01 \\
+BERT-base & 323.89 & 1.542 & 4.29 \\
+BioBERT & 339.49 & 1.616 & 4.05 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\vspace{0.15em}
+\textbf{Relative gain:} best custom model reduces fertility by \(\sim\)12.8\% vs best baseline (GPT-2).
+\vspace{0.55em}
+
+\textbf{Stage 5: Downstream classification (test set)}
+\begin{center}
+\scriptsize
+\begin{tabularx}{0.96\linewidth}{lCC}
+\toprule
+Tokenizer & Accuracy & Macro-F1 \\
+\midrule
+BioBPE-50k & \textbf{0.5667} & \textbf{0.3718} \\
+BioBPE-30k & \textbf{0.5667} & 0.3710 \\
+GPT-2 & \textbf{0.5667} & 0.3643 \\
+BERT-base & 0.5600 & 0.3582 \\
+BioBERT & 0.5533 & 0.3521 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\vspace{0.2em}
+\textbf{Observation:} custom BPE improves macro-F1 while keeping accuracy stable.
+\vspace{0.5em}
+
+\textbf{Stage 6: NER-oriented ranking}
+\begin{center}
+\begin{tikzpicture}
+\node[anchor=west] at (-1.0,2.45) {\small BioBPE-50k};
+\fill[PosterSecondary!80] (2.9,2.2) rectangle (8.0,2.6);
+\node[anchor=west] at (-1.0,1.65) {\small BioBPE-30k};
+\fill[PosterSecondary!65] (2.9,1.4) rectangle (7.55,1.8);
+\node[anchor=west] at (-1.0,0.85) {\small BERT-base};
+\fill[PosterAccent!75] (2.9,0.6) rectangle (6.45,1.0);
+\node[anchor=west] at (-1.0,0.05) {\small GPT-2};
+\fill[PosterAccent!60] (2.9,-0.2) rectangle (6.2,0.2);
+\node[anchor=west] at (-1.0,-0.75) {\small BioBERT};
+\fill[PosterAccent!45] (2.9,-1.0) rectangle (6.0,-0.6);
+\draw[PosterText!35,line width=0.8pt] (2.9,-1.25) -- (8.9,-1.25);
+\node[anchor=west,font=\scriptsize] at (2.9,-1.6) {NER tokenization score};
+\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (8.15,2.4) {0.3049};
+\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (7.70,1.6) {0.2920};
+\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (6.60,0.8) {0.2272};
+\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (6.35,0.0) {0.2167};
+\node[anchor=west,font=\scriptsize,fill=white,inner sep=1.2pt] at (6.15,-0.8) {0.2087};
+\end{tikzpicture}
 \end{center}
 \end{block}
+
+\begin{alertblock}{Key Takeaways}
+\begin{itemize}
+  \item Best tokenizer overall: \textbf{BioBPE-50k}.
+  \item Intrinsic compactness and extrinsic quality improve consistently.
+  \item Gains are strongest in entity-sensitive biomedical text.
+\end{itemize}
+\end{alertblock}
 
 \begin{block}{Conclusions}
 \justifying
 \begin{itemize}
-    \item What is confirmed
-    \item Limitations
-    \item Future work directions
+    \item Domain-adapted BPE produces consistently more compact segmentation on biomedical text.
+    \item Custom tokenizers deliver the best macro-F1 and strongest NER-oriented scores.
+    \item \(50k\) vocabulary is the most stable option across intrinsic and extrinsic evaluations.
+    \item Practical recommendation: use custom biomedical BPE as a default tokenizer for PubMed-style pipelines.
 \end{itemize}
+\textbf{Limitations:} fixed lightweight classifier and single-domain corpus; future work includes transformer fine-tuning with embedding transfer (FVT/FOCUS/ZeTT).
 \end{block}
 
-\begin{block}{Contacts}
+\begin{block}{Reproducibility}
 \justifying
-Email: name.surname@university.edu\\
-GitHub: github.com/username\\
-Project page / QR: \texttt{https://example.org}
+\begin{itemize}
+    \item Notebooks: 6 staged experiments from EDA to NER tokenization evaluation.
+    \item Deterministic setup: fixed seeds and consistent data protocol.
+    \item All metrics reported on the same benchmark splits for fair comparison.
+\end{itemize}
 \end{block}
 
 \end{column}
